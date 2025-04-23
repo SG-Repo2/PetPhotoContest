@@ -1,4 +1,4 @@
-// script.js
+// script.js - Updated for proper image display
 (function() {
     const petGrid       = document.getElementById('pet-grid');
     const loadingEl     = document.getElementById('loading');
@@ -41,7 +41,7 @@
           </div>
           <div class="pet-info">
             <h3 class="pet-name">${data.petName}</h3>
-            <div class="pet-owner">Owner: ${data.owner}</div>
+          
             <div class="vote-count">Current votes: ${data.votes}</div>
             <button class="btn btn-vote${isSel ? ' selected' : ''}"
                     ${selectedPets.length >= MAX_SELECTIONS && !isSel ? 'disabled' : ''}>

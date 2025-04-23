@@ -156,15 +156,16 @@
   }
   
   .pet-image-container {
-    height: 250px;
+    height: auto;
+    min-height: 250px;
     overflow: hidden;
     position: relative;
   }
   
   .pet-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    object-fit: contain;
     transition: transform var(--transition-speed);
   }
   
@@ -400,6 +401,9 @@
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
     .logo-text { font-size: 2rem; }
+    .pet-image-container {
+      min-height: 200px;
+    }
   }
   
   @media (max-width: 480px) {
@@ -407,4 +411,7 @@
     .container { padding: 15px; }
     .logo-text { font-size: 1.8rem; }
     .logo-icon { width: 50px; height: 50px; }
+    .pet-image-container {
+      min-height: 180px;
+    }
   }
