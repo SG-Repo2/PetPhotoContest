@@ -1,0 +1,38 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pet Photo Contest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="assets/img/petHeader.png" alt="Pet Photo Contest" class="header-image">
+      <div class="tagline"></div>
+    </header>
+
+    <div class="instructions">Select up to 3 of your favorite photographs below!</div>
+    <div id="error-container"></div>
+
+    <div id="selection-counter" class="selection-counter">
+      You've selected <span class="counter-number">0</span> out of 3
+    </div>
+
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Loading pet photos...</p>
+    </div>
+
+    <div id="pet-grid" class="pet-grid"></div>
+
+    <button id="submit-btn" class="btn btn-submit" disabled>
+      <img src="assets/img/submitButton.png" alt="Submit your votes" class="submit-button-img">
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
