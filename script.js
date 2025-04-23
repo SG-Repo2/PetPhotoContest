@@ -37,7 +37,7 @@
         card.className = `pet-card${isSel ? ' selected' : ''}`;
         card.innerHTML = `
           <div class="pet-image-container">
-            <img src="${data.image}" alt="${data.petName}" class="pet-image">
+            <img src="assets/pets/${data.image}" alt="${data.petName}" class="pet-image">
           </div>
           <div class="pet-info">
             <h3 class="pet-name">${data.petName}</h3>
