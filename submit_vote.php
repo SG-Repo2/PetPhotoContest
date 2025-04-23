@@ -10,7 +10,7 @@ if (!file_exists($votes_file)) {
 }
 
 // Get the current votes from the JSON file
-$votes = json_decode(file_get_contents($votes_file), true);
+$pets = json_decode(file_get_contents($votes_file), true);
 
 // Get the submitted photo IDs
 $data = json_decode(file_get_contents('php://input'), true);
@@ -18,15 +18,13 @@ $photo_ids = $data['photo_ids'];
 
 // Increment the vote count for each selected photo
 foreach ($photo_ids as $photo_id) {
-    if (isset($votes[$photo_id])) {
-        $votes[$photo_id]++;
-    } else {
-        $votes[$photo_id] = 1;
+    if (isset($pets[$photo_id])) {
+        $pets[$photo_id]['votes']++;
     }
 }
 
 // Save the updated votes back to the JSON file
-file_put_contents($votes_file, json_encode($votes));
+file_put_contents($votes_file, json_encode($pets, JSON_PRETTY_PRINT));
 
 // Return a success response
 echo json_encode(['success' => true]);
