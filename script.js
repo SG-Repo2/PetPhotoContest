@@ -5,6 +5,7 @@
   const errorEl       = document.getElementById('error-container');
   const submitBtn     = document.getElementById('submit-btn');
   const counterNumber = document.querySelector('.counter-number');
+  const viewToggleEl  = document.getElementById('view-toggle');
   let pets            = {};
   let selectedPets    = [];
   const MAX_SELECTIONS = 3;
@@ -14,6 +15,29 @@
   function init() {
     fetchPets();
     submitBtn.addEventListener('click', submitVotes);
+    
+    // Add view toggle functionality
+    if (viewToggleEl) {
+      const viewButtons = viewToggleEl.querySelectorAll('.view-button');
+      viewButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const view = button.getAttribute('data-view');
+          setActiveView(view, viewButtons);
+        });
+      });
+    }
+  }
+
+  // Function to handle view toggling
+  function setActiveView(view, buttons) {
+    // Toggle active class on buttons
+    buttons.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-view') === view);
+    });
+    
+    // Update pet grid classes
+    petGrid.classList.remove('grid-view', 'carousel-view');
+    petGrid.classList.add(`${view}-view`);
   }
 
   async function fetchPets() {

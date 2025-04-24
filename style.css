@@ -126,12 +126,75 @@ header {
   font-weight: bold;
 }
 
-/* Pet Grid */
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 10px;
+  display: none; /* Hidden by default, shown on desktop */
+}
+
+.view-button {
+  padding: 8px 16px;
+  background-color: var(--light-gray);
+  border: 2px solid var(--primary-color);
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all var(--transition-speed);
+  color: var(--primary-color);
+}
+
+.view-button:hover {
+  background-color: rgba(0, 122, 255, 0.1);
+}
+
+.view-button.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Pet Grid - Default Grid View */
 .pet-grid {
+  margin-bottom: 30px;
+}
+
+/* Grid View */
+.pet-grid.grid-view {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 20px;
-  margin-bottom: 30px;
+}
+
+/* Carousel View */
+.pet-grid.carousel-view {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.carousel-view::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-view::-webkit-scrollbar-track {
+  background: var(--light-gray);
+  border-radius: 10px;
+}
+
+.carousel-view::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+.carousel-view .pet-card {
+  flex: 0 0 auto;
+  width: 80%;
+  max-width: 500px;
 }
 
 /* Pet Card - Polaroid Style */
@@ -168,13 +231,16 @@ header {
   justify-content: center;
   background-color: var(--light-gray);
   padding: 10px;
+  aspect-ratio: 1 / 1;      /* Square aspect ratio for consistency */
 }
 
 .pet-image {
   width: 100%;               /* fill container width */
-  height: auto;              /* maintain aspect ratio */
+  height: 100%;              /* fill container height */
   object-fit: contain;       /* show full image, letterbox if needed */
   transition: transform var(--transition-speed);
+  max-height: 100%;          /* ensure image doesn't overflow */
+  max-width: 100%;           /* ensure image doesn't overflow */
 }
 
 /* Optional: gentle zoom on hover */
@@ -408,22 +474,43 @@ header {
 }
 
 /* Responsive adjustments */
+@media (min-width: 769px) {
+  /* Desktop Styles */
+  .view-toggle {
+    display: flex; /* Show toggle on desktop */
+  }
+  
+  .pet-image-container {
+    aspect-ratio: 4 / 3; /* Slightly less square for desktop */
+  }
+}
+
 @media (max-width: 768px) {
+  /* Tablet & Mobile Styles */
   .pet-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
+  
   .logo-text { font-size: 2rem; }
+  
   .pet-image-container {
     min-height: auto;
   }
 }
 
 @media (max-width: 480px) {
-  .pet-grid { grid-template-columns: 1fr; }
+  /* Mobile Styles */
+  .pet-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .pet-card {
+    width: 100%; /* Full width for mobile */
+  }
+  
   .container { padding: 15px; }
   .logo-text { font-size: 1.8rem; }
   .logo-icon { width: 50px; height: 50px; }
-  .pet-image-container {
-    min-height: auto;
-  }
 }
