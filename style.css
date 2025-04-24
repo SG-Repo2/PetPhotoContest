@@ -296,6 +296,13 @@
   .btn-vote:hover img {
     transform: scale(1.05);
   }
+
+  .vote-button-img {
+    width: auto;
+    height: 20px;
+    margin-left: 5px;
+    vertical-align: middle;
+  }
   
   /* Submit button */
   .btn-submit {

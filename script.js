@@ -42,10 +42,10 @@
           <div class="pet-info">
             <h3 class="pet-name">${data.petName}</h3>
           
-            <div class="vote-count">Current votes: ${data.votes}</div>
+  
             <button class="btn btn-vote${isSel ? ' selected' : ''}"
                     ${selectedPets.length >= MAX_SELECTIONS && !isSel ? 'disabled' : ''}>
-              Vote <span class="paw-icon"></span>
+               <img src="assets/img/voteButton.png" alt="Vote" class="vote-button-img">
             </button>
           </div>`;
         petGrid.appendChild(card);
