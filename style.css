@@ -215,7 +215,7 @@
     font-size: 1rem;
   }
   
-  .btn:hover {
+  .btn:not(.btn-submit):hover {
     background-color: #0056b3;
     transform: translateY(-2px);
   }
@@ -230,10 +230,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    background: none;
+    gap: 8px;
+    background-color: var(--primary-color);
     border: none;
-    padding: 0;
+    border-radius: 30px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
   }
   
   .btn-vote.selected {
@@ -262,19 +266,17 @@
     position: absolute;
     width: 8px;
     height: 4px;
-    border: 2px solid var(--primary-color);
+    background-color: var(--primary-color);
     border-radius: 50%;
   }
   
   .btn-vote .paw-icon::before {
-    border-bottom: none;
     top: 3px;
     left: 3px;
     transform: rotate(-45deg);
   }
   
   .btn-vote .paw-icon::after {
-    border-top: none;
     bottom: 3px;
     left: 3px;
     transform: rotate(45deg);
@@ -282,7 +284,7 @@
   
   .btn-vote.selected .paw-icon::before,
   .btn-vote.selected .paw-icon::after {
-    border-color: white;
+    background-color: white;
   }
   
   .btn-vote img {
@@ -297,30 +299,34 @@
   
   /* Submit button */
   .btn-submit {
+    display: block;
+    margin: 30px auto;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
     transition: transform var(--transition-speed);
-    display: block;
-    margin: 30px auto;
-    padding: 15px 40px;
-    font-size: 1.2rem;
+    border-radius: 0; /* Ensuring no border-radius clips the PNG */
   }
   
   .btn-submit:hover {
     transform: translateY(-2px);
-    background: none;
+  }
+  
+  .btn-submit:active {
+    transform: translateY(0);
   }
   
   .btn-submit:disabled {
     opacity: 0.5;
     cursor: not-allowed;
+    transform: none;
   }
   
   .submit-button-img {
-    max-width: 300px;
+    width: auto;
     height: auto;
+    max-width: 400px; /* Increased from 300px to make the button larger */
   }
   
   /* Loading State */
