@@ -17,13 +17,11 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Poppins', sans-serif;
   line-height: 1.6;
-  color: var(--dark-gray);
-  background-color: white;
-  /* Subtle paw print background pattern */
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="8" fill="rgba(0,0,0,0.03)"/><circle cx="30" cy="40" r="5" fill="rgba(0,0,0,0.03)"/><circle cx="70" cy="40" r="5" fill="rgba(0,0,0,0.03)"/><circle cx="30" cy="60" r="5" fill="rgba(0,0,0,0.03)"/><circle cx="70" cy="60" r="5" fill="rgba(0,0,0,0.03)"/></svg>');
-  background-size: 100px 100px;
+  background-image: url('assets/img/pawPrintBackground.jpg');
+  background-repeat: repeat;
+  background-size: 200px auto;
   padding: 20px;
 }
 
@@ -31,15 +29,22 @@ body {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.75);
   padding: 20px;
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+}
+
+.header-content {
+  background: rgba(255, 255, 255, 1);
+  padding: 30px; /* Increased padding */
+  border-radius: var(--border-radius);
+  margin-bottom: 25px; /* Increased margin */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px; /* Added margin */
 }
 
 /* Logo styles */
@@ -121,9 +126,10 @@ header {
 
 .instructions {
   text-align: center;
-  margin: 20px 0;
-  font-size: 1.2rem;
-  font-weight: bold;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--dark-gray);
 }
 
 /* View Toggle */
@@ -133,6 +139,7 @@ header {
   margin: 20px 0;
   gap: 10px;
   display: none; /* Hidden by default, shown on desktop */
+  font-weight: 600;
 }
 
 .view-button {
@@ -197,6 +204,52 @@ header {
   max-width: 500px;
 }
 
+/* Carousel Navigation */
+.carousel-nav {
+  display: none; /* Hidden by default, shown in carousel view */
+  position: relative;
+  margin: 20px 0;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0.8;
+  transition: opacity var(--transition-speed);
+}
+
+.carousel-arrow:hover {
+  opacity: 1;
+}
+
+.carousel-arrow.prev {
+  left: 10px;
+}
+
+.carousel-arrow.next {
+  right: 10px;
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Show carousel navigation only in carousel view */
+.carousel-view + .carousel-nav {
+  display: block;
+}
+
 /* Pet Card - Polaroid Style */
 .pet-card {
   background-color: white;
@@ -252,16 +305,68 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 12px 16px 0;      /* reduced padding */
-  gap: 8px;                  /* reduced gap */
+  padding: 16px 16px 8px;
+  gap: 0px; /* Remove gap completely */
   text-align: center;
+  background-color: white;
+  border-radius: 0 0 2px 2px; /* Match card border radius */
 }
 
-.pet-name {
-  font-size: 1.8rem; /* Increased from 1.5rem */
-  font-weight: bold;
-  margin-bottom: 5px;
-  font-family: 'Patrick Hand', cursive;
+.photo-title {
+  /* No fixed font size here - JS will handle that */
+  font-weight: 600;
+  margin-bottom: 0; /* Removed margin between title and caption */
+  font-family: 'Poppins', sans-serif;
+  color: var(--primary-color);
+  line-height: 1.1; /* Reduce line height */
+  /* Allow for proper text wrapping */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  width: 100%;
+}
+
+.photo-caption {
+  font-size: 1rem;
+  color: black;
+  margin-top: -3px; /* Add negative margin to pull up */
+  margin-bottom: 4px;
+  line-height: 1.2; /* Reduce line height */
+  max-height: 4.8rem; /* Increased from 3.6rem to 4 lines */
+  overflow: hidden;
+  position: relative;
+}
+
+.photo-caption.expanded {
+  max-height: none; /* Remove height restriction when expanded */
+}
+
+.photo-caption-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.2rem; /* Match line height */
+  background: linear-gradient(to bottom, transparent, white); /* Fade out effect */
+  pointer-events: none; /* Let clicks through to the read-more button */
+  display: none; /* Hidden by default, shown by JS when needed */
+}
+
+.read-more-btn {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 0.85rem;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 2px;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.read-more-btn:hover {
+  color: #0056b3;
 }
 
 /* Buttons */
@@ -290,20 +395,20 @@ header {
 
 /* Vote button */
 .btn-vote {
-  padding: 8px 16px;           /* reduced padding for smaller size */
-  display: inline-flex;         /* center icon + text */
+  padding: 3px 8px; /* Smaller padding */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;                     /* reduced gap */
-  font-size: 0.9rem;            /* smaller font size */
+  gap: 2px; /* Smaller gap */
+  font-size: 0.65rem; /* Smaller font */
   font-weight: bold;
-  line-height: 1.4;
-  max-width: 180px;             /* reduced max width */
-  width: 100%;                  /* fill up to cap, then center */
-  margin: 0 auto;               /* center inside card */
+  line-height: 1.2;
+  max-width: 100px; /* Smaller max width */
+  width: auto; /* Auto width instead of 100% */
+  margin: 8px auto; /* Adjusted margin */
   background-color: var(--primary-color);
   border: none;
-  border-radius: 25px;          /* smaller border radius */
+  border-radius: 15px; /* Smaller border radius */
   color: white;
   transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
@@ -321,8 +426,8 @@ header {
 
 .btn-vote .paw-icon {
   display: inline-block;
-  width: 14px;                 /* smaller icon */
-  height: 14px;                /* smaller icon */
+  width: 12px;                 /* smaller icon */
+  height: 12px;                /* smaller icon */
   background-color: white;
   border-radius: 50%;
   position: relative;
@@ -367,25 +472,32 @@ header {
 
 .vote-button-img {
   width: auto;
-  height: 14px; /* Further reduced from 16px */
+  height: 10px; /* Reduced from 12px */
   vertical-align: middle;
 }
 
 /* Submit button */
 .btn-submit {
-  background: none;
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: var(--primary-color);
+  color: white;
   border: none;
-  padding: 0;
-  border-radius: 0;
-  transform: none;
-  display: inline-block;       /* shrink-wrap the PNG */
-  margin: 30px auto;
+  border-radius: var(--border-radius);
   cursor: pointer;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
+  box-shadow: var(--box-shadow);
 }
 
-.btn-submit:hover,
-.btn-submit:active {
-  transform: none;             /* disable hover lift */
+.btn-submit:hover {
+  background-color: #0056b3;
+  transform: translateY(-3px);
 }
 
 .btn-submit:disabled {
@@ -395,10 +507,10 @@ header {
 }
 
 .submit-button-img {
-  display: block;             /* remove inline whitespace */
-  width: 100%;
-  max-width: none;            /* allow full resolution unless capped */
-  height: auto;
+  height: 40px;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* Loading State */
@@ -451,7 +563,8 @@ header {
 .selection-counter {
   margin: 20px 0;
   text-align: center;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
 .counter-number {
@@ -470,7 +583,7 @@ header {
 .header-image {
   max-width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 /* Responsive adjustments */
@@ -513,4 +626,22 @@ header {
   .container { padding: 15px; }
   .logo-text { font-size: 1.8rem; }
   .logo-icon { width: 50px; height: 50px; }
+  
+  .photo-title {
+    font-size: 1.6rem;
+  }
+  
+  .photo-caption {
+    font-size: 0.9rem;
+  }
+  
+  .instructions {
+    font-size: 1.1rem;
+  }
+
+  .btn-submit {
+    font-size: 2.5rem;
+    height: 70px;
+    line-height: 70px;
+  }
 }
