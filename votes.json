@@ -1,32 +1,308 @@
 {
     "Tuki": {
       "owner": "Sig",
-      "petName": "Tuki the American Bully",
+      "photoTitle": "Tuki the American Bully",
+      "photoCaption": "A beautiful American Bully enjoying the outdoors",
       "image": "Tuki the American Bully _Sig the Pit Bull_Ravin_HydroTex Golden Triangle.png",
+      "facility": "HydroTex Golden Triangle",
       "votes": 0
     },
     "Frankie": {
       "owner": "SueSmith",
-      "petName": "Frankie the Moodle",
+      "photoTitle": "Frankie the Moodle",
+      "photoCaption": "Frankie enjoying a day at the beach",
       "image": "Frankie the Moodle_SueSmith_HydroAustralia.jpg",
+      "facility": "Hydro Australia",
       "votes": 0
     },
     "DaBear": {
       "owner": "Carol Marchan",
-      "petName": "DaBear",
+      "photoTitle": "Luck o’ the Irish or just my natural charm 🍀",
+      "photoCaption": "Some say luck o’ the Irish… I say it’s just my natural charm 🍀 Caught struttin’ through Chicago’s St. Paddy’s Day like I own the parade.",
       "image": "DaBear_Carol Marchan_ HydroAire Madison.jpg",
+      "facility": "HydroAire Madison",
       "votes": 0
     },
     "Bear": {
       "owner": "Isabella Alacorn",
-      "petName": "Bear",
+      "photoTitle": "Bear",
+      "photoCaption": "Bear playing in the garden",
       "image": "Bear_Isabella Alacorn_HydroAire Madison copy.jpg",
+      "facility": "HydroAire Madison",
       "votes": 0
     },
     "Alfie": {
       "owner": "Trisha Cook",
-      "petName": "Alfie",
+      "photoTitle": "Alfie",
+      "photoCaption": "Alfie's day out",
       "image": "Alfie_Trisha Cook_Hydro Australia.jpeg",
+      "facility": "Hydro Australia",
       "votes": 0
-    }
-  }
+    },
+    "Daisy and Larry": {
+      "owner": "Sean Groebe",
+      "photoTitle": "So Fresh and So Clean",
+      "photoCaption": "Larry and Daisy are fresh from the groomers, and the ladie got some new bows, and the gentleman got a new necktie for work!",
+      "image": "Daisy and Larry_Sean Groebe_Madison.jpeg",
+      "facility": "Madison",
+      "votes": 0
+    },
+    "Michigan": {
+      "owner": "Carolina Hernandez",
+      "photoTitle": "Michigan",
+      "photoCaption": "Michigan exploring the outdoors",
+      "image": "Michigan_Carolina Hernandez_Madison.jpg",
+      "facility": "Madison",
+      "votes": 0
+    },
+    "Bingo": {
+      "owner": "Chris Miller",
+      "photoTitle": "Everything Is A Toy For A Puppy",
+      "photoCaption": "Logan Miller tries to save his shirt from his new puppy Bingo who thinks everything is hers to chew on.",
+      "image": "Bingo_Chris Miller_Madison.jpg",
+      "facility": "Madison",
+      "votes": 0
+    },
+    "catModel": {
+      "owner": "Alicia Castanon",
+      "photoTitle": "Cat Model",
+      "photoCaption": "He doesn’t just love the camera... it’s as if the camera is in love with him.",
+      "image": "20250329_130712.jpg",
+      "facility": "Madison",
+      "votes": 0
+    },
+    
+      "LarryFreeman": {
+        "owner": "Larry Freeman",
+        "photoTitle": "Munchkin ready for breakfast",
+        "photoCaption": "This is our 2-1/2 year old spoiled dog. He travels with us on every job.",
+        "image": "IMG_3387.jpeg",
+        "facility": "Hydro, Inc.",
+        "votes": 0
+      },
+      "AbdulHameed": {
+        "owner": "PUDIYAKATH Abdul Hameed",
+        "photoTitle": "Poppy and Rio: A Perfect Trio",
+        "photoCaption": "A serene moment captured with my parrot, Rio, playful as usual and my cat, Poppy, resting on my lap. Together, they make the perfect companions, bringing peace to my everyday life.",
+        "image": "IMG-20250417-WA0009 (1).jpg",
+        "facility": "Hydro Middle East (Dubai)",
+        "votes": 0
+      },
+      "PerryHassen": {
+        "owner": "Perry Hassen",
+        "photoTitle": "I do love Christmas, really I do!!",
+        "photoCaption": "This my 13 year old cat Phoenyx at Christmas this last year.",
+        "image": "GetAttachmentThumbnail.jpg",
+        "facility": "Hydro Scotford",
+        "votes": 0
+      },
+      
+        "JohnNeely": {
+          "owner": "John Neely",
+          "photoTitle": "Miss Blue Neely",
+          "photoCaption": "Miss Blue as a kitten",
+          "image": "Miss Blue as a kitten.PNG",
+          "facility": "HydroAire Madison",
+          "votes": 0
+        },
+        "CatherineMiles": {
+          "owner": "Catherine Miles",
+          "photoTitle": "Paisley Jane",
+          "photoCaption": "",
+          "image": "IMG_7167.JPG",
+          "facility": "Hydro, Inc.",
+          "votes": 0
+        },
+        "DinaTakai": {
+          "owner": "Dina Takai",
+          "photoTitle": "The Silent Sass",
+          "photoCaption": "Just a wink and a vibe.",
+          "image": "winnie.jpg",
+          "facility": "HydroAire Madison",
+          "votes": 0
+        },
+        "JosieLi": {
+          "owner": "Josie Li",
+          "photoTitle": "Kim Kardashian",
+          "photoCaption": "",
+          "image": "IMG_8175.jpeg",
+          "facility": "Hydro, Inc.",
+          "votes": 0
+        },
+        "EstefaniaTovar": {
+          "owner": "Estefania Tovar",
+          "photoTitle": "Little Munchkin",
+          "photoCaption": "",
+          "image": "little munchkin.JPG",
+          "facility": "HydroAire 40th St.",
+          "votes": 0
+        },
+        "NateThomas": {
+          "owner": "Nate Thomas",
+          "photoTitle": "Ellie",
+          "photoCaption": "This is my girl, Ellie. We're in love.",
+          "image": "ellie.jpg",
+          "facility": "HydroAire Madison",
+          "votes": 0
+        },
+        "WilliamHippie": {
+          "owner": "William Hippie",
+          "photoTitle": "Lily and Indie",
+          "photoCaption": "Lily and Indie",
+          "image": "Lily.jpeg",
+          "facility": "HydroAire Madison",
+          "votes": 0
+        },
+        
+          "AllisonKochanski": {
+            "owner": "Allison Kochanski",
+            "photoTitle": "Loving Life",
+            "photoCaption": "When Olive's post dog park euphoria sets in.",
+            "image": "Olive.jpg",
+            "facility": "Hydro, Inc.",
+            "votes": 0
+          },
+          "WillHubenak": {
+            "owner": "Will Hubenak",
+            "photoTitle": "My Best Friend",
+            "photoCaption": "Levi Hubenak and his best friend Cash!!",
+            "image": "Cash and Levi.jpg",
+            "facility": "HydroTex (Deer Park)",
+            "votes": 0
+          },
+          "GaryDyson": {
+            "owner": "Gary Dyson",
+            "photoTitle": "Roll in it? Me? Don’t think so.",
+            "photoCaption": "When your dog just can’t resist!",
+            "image": "IMG_9148.jpeg",
+            "facility": "Hydro Global Engineering Services",
+            "votes": 0
+          },
+          "AngieVruno": {
+            "owner": "Angie Vruno",
+            "photoTitle": "Licking her chops",
+            "photoCaption": "Allie waiting for her dinner! She is hoping it’s the steak Dad is grilling",
+            "image": "IMG_1787.png",
+            "facility": "Hydro, Inc.",
+            "votes": 0
+          },
+          "MargaritaHayes": {
+            "owner": "Margarita Hayes",
+            "photoTitle": "2025 Hydro Photo Contest: Best Pet Picture",
+            "photoCaption": "Cats can lay in all kinds of positions, I see an ear, so somewhere is the rest of her face. (Bella Hayes)",
+            "image": "BELLA HAYES 2025.jpg",
+            "facility": "HydroAire Madison",
+            "votes": 0
+          },
+          "JustinMiller": {
+            "owner": "Justin Miller",
+            "photoTitle": "See Mouse rawr!!",
+            "photoCaption": "Caught in mid yawn, you can see Mouse with his uncanny resemblance to Gene Simmons",
+            "image": "4353527760780571763.jpeg",
+            "facility": "Hydro East",
+            "votes": 0
+          },
+          "DavidLies": {
+            "owner": "David Lies",
+            "photoTitle": "I can help you with your diet, just give that to me.",
+            "photoCaption": "I can help you with your diet, just give that to me.\n\nHazel, belongs to David and Beate Lies",
+            "image": "David Lies.jpg",
+            "facility": "Hydro, Inc.",
+            "votes": 0
+          },
+          "AmyBelanger": {
+            "owner": "Amy Belanger",
+            "photoTitle": "Cone Sweet Cone",
+            "photoCaption": "",
+            "image": "Jack.jpg",
+            "facility": "Hydro Scotford",
+            "votes": 0
+          },
+          
+            "MorganThomson": {
+              "owner": "Morgan Thomson",
+              "photoTitle": "I've got sunshine, on a cloudy day",
+              "photoCaption": "This is our regal grey Tabby, Simon we adopted through C.A.O.S (Companion Animal Outreach Services) <3",
+              "image": "Simon.jpeg",
+              "facility": "Hydro Scotford",
+              "votes": 0
+            },
+            "PatrishaConner": {
+              "owner": "Patrisha Conner",
+              "photoTitle": "This is Remi!",
+              "photoCaption": "This is Remi!\n\nHe is a silver dachshund and catches everyone's attention and boy does he love the attention! He is 100% a daddy's boy (even though mama rescued him to be a mama's boy. No that's not jealousy you hear in my voice.) Now, while our 5-year-old Remi dog may be the cutest thing you've ever seen what you don't know is that he's a pint-sized assassin. He is obsessed with squeaky toys. To him, it’s not just a toy; it’s a nemesis, taunting him with every high-pitched squeak. He’s not playing; he’s hunting. The moment he gets his paws on it, it’s game over—teeth gnashing, stuffing flying, a scene straight out of a canine crime drama. He’s not satisfied until he’s ripped out that squeaky heart and silenced it forever, leaving a trail of plush carnage behind. However, let a balloon enter the room with our fearless squeaky-slaying dachshund those floppy ears go flat, his stubby legs tremble, and he’s in your lap faster than you can say helium.\n\nWhile an average dachshund is between 20-27 inches from nose tip to the base of their tail, Remi is a whopping 31 inches long!",
+              "image": "1000040482.jpg",
+              "facility": "Hydro Parts Solutions",
+              "votes": 0
+            },
+            "TuanPhan": {
+              "owner": "Tuan Phan",
+              "photoTitle": "Little Cookie and Traditional Vietnamese New Year",
+              "photoCaption": "Cookie is a member of our family in Vietnam. Took him out for a photoshoot during my last trip. The background is typical decoration of our traditional lunar new year.",
+              "image": "Cookie.jpg",
+              "facility": "HydroAire Madison",
+              "votes": 0
+            },
+            "MayraPonce": {
+              "owner": "Mayra Ponce",
+              "photoTitle": "Bonnie",
+              "photoCaption": "Must be hard living the Pug Life!",
+              "image": "bonnie.jpg",
+              "facility": "Evans Hydro",
+              "votes": 0
+            },
+            "MichaelRaetz": {
+              "owner": "Michael Raetz",
+              "photoTitle": "Snug as a Bug",
+              "photoCaption": "(March 2025 - 6 month old Franklin) \"Snug as a Bug\"",
+              "image": "Franklin.jpg",
+              "facility": "Hydro, Inc.",
+              "votes": 0
+            },
+            "HammayonPervez": {
+              "owner": "Hammayon Pervez",
+              "photoTitle": "Raju and Coco",
+              "photoCaption": "Sleeping kitten sweethearts",
+              "image": "Raju and Coco.jpg",
+              "facility": "HydroAire 40th St.",
+              "votes": 0
+            },
+            "AnitaCallahan": {
+              "owner": "Anita Callahan",
+              "photoTitle": "Who me? I have no idea how that hole got there.",
+              "photoCaption": "Callie Callahan in the yard",
+              "image": "Callie digging holes in the yard.jpg",
+              "facility": "HydroAire 40th St.",
+              "votes": 0
+            },
+            
+              "TerryCarpenter": {
+                "owner": "Terry Carpenter",
+                "photoTitle": "Waiting for the daily walk",
+                "photoCaption": "Mad Max (front) and Mad Dog Maddie (back) calmly waiting for their daily walk",
+                "image": "IMG_2525.jpg",
+                "facility": "Evans Hydro",
+                "votes": 0
+              },
+              "RobertMcCowan": {
+                "owner": "Robert McCowan",
+                "photoTitle": "A boy and his dog",
+                "photoCaption": "",
+                "image": "mccowan-35.jpg",
+                "facility": "HydroAire 40th St.",
+                "votes": 0
+              },
+              "RavinNguyen": {
+                "owner": "Ravin Nguyen",
+                "photoTitle": "Best Buds",
+                "photoCaption": "Tuki the American Bully and Sig the Pit Bull",
+                "image": "Best Buds.jpg",
+                "facility": "HydroTex (Golden Triangle)",
+                "votes": 0
+              }
+            
+            
+    
+
+
+}
