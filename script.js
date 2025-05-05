@@ -243,13 +243,8 @@ checkVoteStatus();
         localStorage.setItem('voteTimestamp', String(Math.floor(Date.now() / 1000)));
         localStorage.setItem('viewOnlyMode', 'true'); // Set view-only mode
         
-        // Instead of redirecting, show success message and switch to view-only mode
-        enableViewOnlyMode();
-        showSuccess('Thank you for voting! You can continue browsing the gallery.');
-        
-        // Reset the selected pets
-        selectedPets = [];
-        renderPets();
+        // Redirect to thank-you.html instead of showing in-page success
+        window.location.href = 'thank-you.html';
       } else {
         throw new Error('Submission failed');
       }
