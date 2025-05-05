@@ -8,13 +8,15 @@ async function checkVoteStatus() {
     if (!res.ok) throw new Error('Could not check vote status');
     const data = await res.json();
     
-    // If there's no reset timestamp or the last vote was after the reset, redirect
+    // If there's no reset timestamp or the last vote was after the reset
     if (!data.resetTimestamp || lastVoteTime > data.resetTimestamp) {
-      window.location.href = 'thank-you.html';
+      // Instead of redirecting, set view-only mode
+      localStorage.setItem('viewOnlyMode', 'true');
     } else {
       // Clear the vote status since there was a reset
       localStorage.removeItem('hasVoted');
       localStorage.removeItem('voteTimestamp');
+      localStorage.removeItem('viewOnlyMode');
     }
   } catch (err) {
     console.error('Error checking vote status:', err);
@@ -31,89 +33,36 @@ checkVoteStatus();
   const errorEl       = document.getElementById('error-container');
   const submitBtn     = document.getElementById('submit-btn');
   const counterNumber = document.querySelector('.counter-number');
-  const viewToggleEl  = document.getElementById('view-toggle');
-  const prevBtn       = document.getElementById('prevBtn');
-  const nextBtn       = document.getElementById('nextBtn');
+  // Remove view toggle and carousel buttons references
   let pets            = {};
   let selectedPets    = [];
   const MAX_SELECTIONS = 3;
 
-  init();
-
+  // Move this function to ensure it runs after DOM is fully loaded
   function init() {
-    fetchPets();
-    submitBtn.addEventListener('click', submitVotes);
-    
-    // Add view toggle functionality
-    if (viewToggleEl) {
-      const viewButtons = viewToggleEl.querySelectorAll('.view-button');
-      viewButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const view = button.getAttribute('data-view');
-          setActiveView(view, viewButtons);
-        });
-      });
-    }
-
-    // Add carousel navigation listeners
-    if (prevBtn) prevBtn.addEventListener('click', () => scrollCarousel('prev'));
-    if (nextBtn) nextBtn.addEventListener('click', () => scrollCarousel('next'));
-  }
-
-  // Function to handle carousel scrolling
-  function scrollCarousel(direction) {
-    const cardWidth = petGrid.querySelector('.pet-card')?.offsetWidth || 0;
-    const scrollAmount = cardWidth + 20; // card width + gap
-    
-    if (direction === 'prev') {
-      petGrid.scrollBy({
-        left: -scrollAmount,
-        behavior: 'smooth'
+    // First make sure DOM is loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() {
+        initializeApp();
       });
     } else {
-      petGrid.scrollBy({
-        left: scrollAmount,
-        behavior: 'smooth'
-      });
+      initializeApp();
     }
-
-    // Update button states after scrolling
-    updateCarouselButtons();
   }
 
-  // Function to update carousel button states
-  function updateCarouselButtons() {
-    if (!petGrid || !prevBtn || !nextBtn) return;
-
-    const isAtStart = petGrid.scrollLeft <= 0;
-    const isAtEnd = petGrid.scrollLeft + petGrid.offsetWidth >= petGrid.scrollWidth;
-
-    prevBtn.disabled = isAtStart;
-    nextBtn.disabled = isAtEnd;
-  }
-
-  // Function to handle view toggling
-  function setActiveView(view, buttons) {
-    // Toggle active class on buttons
-    buttons.forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-view') === view);
-    });
+  // Create a new function to handle all initialization
+  function initializeApp() {
+    fetchPets();
     
-    // Update pet grid classes
-    petGrid.classList.remove('grid-view', 'carousel-view');
-    petGrid.classList.add(`${view}-view`);
-
-    // Show/hide and update carousel navigation
-    const carouselNav = document.querySelector('.carousel-nav');
-    if (carouselNav) {
-      carouselNav.style.display = view === 'carousel' ? 'block' : 'none';
-      if (view === 'carousel') {
-        updateCarouselButtons();
-        // Add scroll event listener for carousel
-        petGrid.addEventListener('scroll', updateCarouselButtons);
-      } else {
-        petGrid.removeEventListener('scroll', updateCarouselButtons);
-      }
+    // Set up modal functionality first to ensure it exists
+    setupImageModal();
+    
+    // Then handle other interactions
+    submitBtn.addEventListener('click', submitVotes);
+    
+    // Check if in view-only mode
+    if (localStorage.getItem('viewOnlyMode') === 'true') {
+      enableViewOnlyMode();
     }
   }
 
@@ -135,6 +84,11 @@ checkVoteStatus();
 
   function renderPets() {
     petGrid.innerHTML = '';
+    const isViewOnly = localStorage.getItem('viewOnlyMode') === 'true';
+    
+    // Always use grid view
+    petGrid.className = 'pet-grid grid-view';
+    
     Object.entries(pets).forEach(([id, data]) => {
       const card = document.createElement('div');
       const isSel = selectedPets.includes(id);
@@ -149,10 +103,11 @@ checkVoteStatus();
           <h3 class="photo-title">${data.photoTitle}</h3>
           <p class="photo-caption">${data.photoCaption || ''}</p>
         </div>
+        ${!isViewOnly ? `
         <button class="btn btn-vote${isSel ? ' selected' : ''}"
                 ${selectedPets.length >= MAX_SELECTIONS && !isSel ? 'disabled' : ''}>
            <img src="assets/img/voteButton.png" alt="Vote" class="vote-button-img">
-        </button>`;
+        </button>` : ''}`;
       petGrid.appendChild(card);
 
       // Apply responsive font size based on title length
@@ -163,11 +118,38 @@ checkVoteStatus();
       const captionElement = card.querySelector('.photo-caption');
       addReadMoreIfNeeded(captionElement);
 
-      card.querySelector('.btn-vote')
-          .addEventListener('click', () => toggleSelection(id));
+      // Only add event listener if not in view-only mode
+      if (!isViewOnly) {
+        const voteButton = card.querySelector('.btn-vote');
+        if (voteButton) {
+          voteButton.addEventListener('click', () => toggleSelection(id));
+        }
+      }
+
+      // Add click event to images for modal functionality
+      const petImage = card.querySelector('.pet-image');
+      if (petImage) {
+        petImage.addEventListener('click', () => {
+          const modal = document.getElementById('imageModal');
+          const modalImg = document.getElementById('modalImage');
+          const captionText = document.getElementById('modalCaption');
+          
+          if (modal && modalImg) {
+            modal.style.display = "block";
+            document.body.style.overflow = "hidden"; // Prevent scrolling behind modal
+            modalImg.src = petImage.src;
+            
+            if (captionText) {
+              const title = data.photoTitle || '';
+              const caption = data.photoCaption || '';
+              captionText.innerHTML = `<strong>${title}</strong><br>${caption}`;
+            }
+          }
+        });
+      }
     });
 
-    submitBtn.disabled = selectedPets.length === 0;
+    submitBtn.disabled = isViewOnly || selectedPets.length === 0;
     counterNumber.textContent = selectedPets.length;
   }
 
@@ -259,7 +241,15 @@ checkVoteStatus();
         // Store both the vote flag and timestamp
         localStorage.setItem('hasVoted', 'true');
         localStorage.setItem('voteTimestamp', String(Math.floor(Date.now() / 1000)));
-        window.location.href = 'thank-you.html';
+        localStorage.setItem('viewOnlyMode', 'true'); // Set view-only mode
+        
+        // Instead of redirecting, show success message and switch to view-only mode
+        enableViewOnlyMode();
+        showSuccess('Thank you for voting! You can continue browsing the gallery.');
+        
+        // Reset the selected pets
+        selectedPets = [];
+        renderPets();
       } else {
         throw new Error('Submission failed');
       }
@@ -270,7 +260,110 @@ checkVoteStatus();
     }
   }
 
+  // New function to enable view-only mode
+  function enableViewOnlyMode() {
+    // Disable the submit button
+    submitBtn.disabled = true;
+    
+    // Add a view-only message
+    const container = document.querySelector('.container');
+    const instructionsEl = document.querySelector('.instructions');
+    
+    const viewOnlyMessage = document.createElement('div');
+    viewOnlyMessage.className = 'view-only-message';
+    viewOnlyMessage.innerHTML = 'You have already voted! You are now in view-only mode.';
+    
+    // Insert after instructions
+    if (instructionsEl) {
+      instructionsEl.insertAdjacentElement('afterend', viewOnlyMessage);
+    } else {
+      container.insertBefore(viewOnlyMessage, container.firstChild);
+    }
+    
+    // Hide the counter
+    const counterEl = document.getElementById('selection-counter');
+    if (counterEl) {
+      counterEl.style.display = 'none';
+    }
+  }
+  
+  // Add a function to show success messages
+  function showSuccess(msg) {
+    const successEl = document.createElement('div');
+    successEl.className = 'success-message';
+    successEl.innerHTML = `<p>${msg}</p>`;
+    
+    // Find a good spot to insert the message
+    const errorEl = document.getElementById('error-container');
+    errorEl.innerHTML = ''; // Clear any errors
+    errorEl.appendChild(successEl);
+    
+    // Auto-hide after a few seconds
+    setTimeout(() => {
+      successEl.style.opacity = '0';
+      setTimeout(() => {
+        if (errorEl.contains(successEl)) {
+          errorEl.removeChild(successEl);
+        }
+      }, 1000);
+    }, 5000);
+  }
+
   function showError(msg) {
     errorEl.innerHTML = `<div class="error"><p>${msg}</p></div>`;
   }
+
+  // Update the setupImageModal function
+  function setupImageModal() {
+    console.log("Setting up image modal..."); // Debug log
+    
+    // Check if modal exists in DOM
+    let modal = document.getElementById('imageModal');
+    
+    // If modal doesn't exist, create it
+    if (!modal) {
+      console.log("Modal not found, creating it dynamically");
+      modal = document.createElement('div');
+      modal.id = 'imageModal';
+      modal.className = 'image-modal';
+      modal.innerHTML = `
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+      `;
+      document.body.appendChild(modal);
+    }
+    
+    const closeBtn = modal.querySelector('.close-modal');
+    
+    // Close modal when clicking the X
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        console.log("Close button clicked"); // Debug log
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+      });
+    }
+    
+    // Close modal when clicking anywhere on it
+    modal.addEventListener('click', (e) => {
+      // Only close if clicking directly on the modal background, not its children
+      if (e.target === modal) {
+        console.log("Modal background clicked"); // Debug log
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Re-enable scrolling
+      }
+    });
+    
+    // Enable keyboard escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.style.display === 'block') {
+        console.log("Escape key pressed"); // Debug log
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+    });
+  }
+
+  init();
 })();
