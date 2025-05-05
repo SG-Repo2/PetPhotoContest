@@ -134,32 +134,7 @@ header {
 
 /* View Toggle */
 .view-toggle {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-  gap: 10px;
-  display: none; /* Hidden by default, shown on desktop */
-  font-weight: 600;
-}
-
-.view-button {
-  padding: 8px 16px;
-  background-color: var(--light-gray);
-  border: 2px solid var(--primary-color);
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all var(--transition-speed);
-  color: var(--primary-color);
-}
-
-.view-button:hover {
-  background-color: rgba(0, 122, 255, 0.1);
-}
-
-.view-button.active {
-  background-color: var(--primary-color);
-  color: white;
+  display: none; /* Hide instead of removing */
 }
 
 /* Pet Grid - Default Grid View */
@@ -176,73 +151,12 @@ header {
 
 /* Carousel View */
 .pet-grid.carousel-view {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  gap: 20px;
-  padding: 10px 0;
-}
-
-.carousel-view::-webkit-scrollbar {
-  height: 8px;
-}
-
-.carousel-view::-webkit-scrollbar-track {
-  background: var(--light-gray);
-  border-radius: 10px;
-}
-
-.carousel-view::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 10px;
-}
-
-.carousel-view .pet-card {
-  flex: 0 0 auto;
-  width: 80%;
-  max-width: 500px;
+  display: none; /* Hide instead of removing */
 }
 
 /* Carousel Navigation */
 .carousel-nav {
-  display: none; /* Hidden by default, shown in carousel view */
-  position: relative;
-  margin: 20px 0;
-}
-
-.carousel-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 10;
-  opacity: 0.8;
-  transition: opacity var(--transition-speed);
-}
-
-.carousel-arrow:hover {
-  opacity: 1;
-}
-
-.carousel-arrow.prev {
-  left: 10px;
-}
-
-.carousel-arrow.next {
-  right: 10px;
-}
-
-.carousel-arrow:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
+  display: none; /* Hide instead of removing */
 }
 
 /* Show carousel navigation only in carousel view */
@@ -294,6 +208,7 @@ header {
   transition: transform var(--transition-speed);
   max-height: 100%;          /* ensure image doesn't overflow */
   max-width: 100%;           /* ensure image doesn't overflow */
+  cursor: pointer; /* Show pointer cursor on images */
 }
 
 /* Optional: gentle zoom on hover */
@@ -644,4 +559,77 @@ header {
     height: 70px;
     line-height: 70px;
   }
+}
+
+/* Add these styles at the end of the file */
+
+/* View-only mode message */
+.view-only-message {
+  background-color: #e1f5fe;
+  color: #0288d1;
+  border-left: 4px solid #0288d1;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: var(--border-radius);
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Success message */
+.success-message {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border-left: 4px solid #2e7d32;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  margin-bottom: 20px;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+/* Image Modal/Lightbox Styles */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  overflow: auto;
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  max-width: 90%;
+  max-height: 80vh;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+  color: var(--primary-color);
+}
+
+/* Add cursor pointer to pet images */
+.pet-image {
+  cursor: pointer;
 }
