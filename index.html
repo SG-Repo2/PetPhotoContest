@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,16 +23,6 @@
 
 
 
-    <div class="carousel-nav">
-      <button class="carousel-arrow prev" id="prevBtn">&#10094;</button>
-      <button class="carousel-arrow next" id="nextBtn">&#10095;</button>
-    </div>
-
-    <div id="loading" class="loading">
-      <div class="spinner"></div>
-      <p>Loading pet photos...</p>
-    </div>
-
     <div id="pet-grid" class="pet-grid grid-view"></div>
 
     <button id="submit-btn" class="btn btn-submit" disabled>
@@ -46,5 +35,11 @@
   </div>
 
   <script src="script.js"></script>
+  
+  <div id="imageModal" class="image-modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <div id="modalCaption"></div>
+  </div>
 </body>
 </html>
